@@ -1,0 +1,112 @@
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Peminjaman Buku</title></head>
+<body>
+<h1>Peminjaman Buku</h1>
+
+<div th:if="${sukses}" style="color:#1b5e20">
+    <p th:text="${sukses}">Reservasi berhasil</p>
+</div>
+
+<div th:if="${pesan}" style="color:#b00020">
+    <p th:text="${pesan}">Stok buku habis</p>
+    <form th:if="${bisaReservasi}" th:action="@{/pinjam/reservasi}" method="post">
+        <input type="hidden" name="idAnggota" th:value="${idAnggotaDipilih}">
+        <input type="hidden" name="idBuku" th:value="${idBukuDipilih}">
+        <button type="submit">Ajukan Reservasi</button>
+    </form>
+</div>
+
+<form th:action="@{/pinjam}" method="post">
+    <p>Nama Anggota:
+        <select name="idAnggota" required>
+            <option value="">-- Pilih Anggota --</option>
+            <option th:each="a : ${daftarAnggota}"
+                    th:value="${a.idAnggota}"
+                    th:text="${a.nama}"
+                    th:selected="${a.idAnggota == idAnggotaDipilih}">Nama</option>
+        </select>
+    </p>
+    <p>Judul Buku:
+        <select name="idBuku" required>
+            <option value="">-- Pilih Buku --</option>
+            <option th:each="b : ${daftarBuku}"
+                    th:value="${b.idBuku}"
+                    th:text="${b.judul + ' (stok: ' + b.stok + ')'}"
+                    th:selected="${b.idBuku == idBukuDipilih}">Judul</option>
+        </select>
+    </p>
+    <button type="submit">Pinjam Buku</button>
+</form>
+
+<p>
+    <a th:href="@{/buku}">Kembali ke Daftar Buku</a><br>
+    <a th:href="@{/anggota}">Daftar Anggota</a><br>
+    <a th:href="@{/stok}">Kelola Stok Buku</a>
+</p>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Peminjaman Buku</title></head>
+<body>
+<h1>Peminjaman Buku</h1>
+
+<div th:if="${sukses}" style="color:#1b5e20">
+    <p th:text="${sukses}">Reservasi berhasil</p>
+</div>
+
+<div th:if="${pesan}">
+    <p th:text="${pesan}">Stok buku habis</p>
+    <div th:if="${bisaReservasi}">
+        <p>Buku yang dipilih sedang tidak tersedia. Kamu dapat melakukan reservasi untuk buku tersebut.</p>
+        <form th:action="@{/pinjam/reservasi}" method="post">
+            <input type="hidden" name="idAnggota" th:value="${idAnggotaDipilih}">
+            <input type="hidden" name="idBuku" th:value="${idBukuDipilih}">
+            <button type="submit">Reservasi Buku</button>
+        </form>
+    </div>
+</div>
+
+<h2>Form Peminjaman</h2>
+<form th:action="@{/pinjam}" method="post">
+    <p>Pilih Anggota:
+        <select name="idAnggota" required>
+            <option value="">-- Pilih Anggota --</option>
+            <option th:each="a : ${daftarAnggota}"
+                    th:value="${a.idAnggota}"
+                    th:text="${a.nama}"
+                    th:selected="${a.idAnggota == idAnggotaDipilih}">Nama</option>
+        </select>
+    </p>
+    <p>Pilih Buku:
+        <select name="idBuku" required>
+            <option value="">-- Pilih Buku --</option>
+            <option th:each="b : ${daftarBuku}"
+                    th:value="${b.idBuku}"
+                    th:text="${b.judul}"
+                    th:selected="${b.idBuku == idBukuDipilih}">Judul</option>
+        </select>
+    </p>
+    <button type="submit">Pinjam Buku</button>
+</form>
+<hr>
+
+<h2>Daftar Buku</h2>
+<table border="1">
+    <tr><th>ID Buku</th><th>Judul</th><th>Stok</th></tr>
+    <tr th:each="b : ${daftarBuku}">
+        <td th:text="${b.idBuku}">B001</td>
+        <td th:text="${b.judul}">Judul</td>
+        <td th:text="${b.stok}">0</td>
+    </tr>
+</table>
+
+<p>
+    <a th:href="@{/buku}">Kembali ke Daftar Buku</a><br>
+    <a th:href="@{/anggota}">Daftar Anggota</a><br>
+    <a th:href="@{/stok}">Kelola Stok Buku</a>
+</p>
+</body>
+</html>

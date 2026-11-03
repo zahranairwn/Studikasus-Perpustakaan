@@ -1,0 +1,40 @@
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Bukti Peminjaman</title></head>
+<body>
+<h1>Bukti Peminjaman</h1>
+<table>
+    <tr><td>No. Transaksi</td><td th:text="${bukti.idTransaksi}">T0001</td></tr>
+    <tr><td>Anggota</td>      <td th:text="${bukti.namaAnggota}">Nama</td></tr>
+    <tr><td>Buku</td>         <td th:text="${bukti.judulBuku}">Judul</td></tr>
+    <tr><td>Tanggal</td>      <td th:text="${bukti.tanggalPinjam}">2026-10-25</td></tr>
+    <tr><td>Status</td>       <td th:text="${bukti.status}">DIPINJAM</td></tr>
+</table>
+<a th:href="@{/pinjam}">Pinjam Lagi</a><br>
+<a th:href="@{/buku}">Daftar Buku</a><br>
+<a th:href="@{/anggota}">Daftar Anggota</a>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Bukti Peminjaman Buku</title></head>
+<body>
+<h1>Bukti Peminjaman Buku</h1>
+<p>Peminjaman buku berhasil dilakukan.</p>
+
+<table border="1">
+    <tr><th>ID Transaksi</th><td th:text="${bukti.idTransaksi}">T0001</td></tr>
+    <tr><th>Nama Anggota</th><td th:text="${bukti.namaAnggota}">Nama</td></tr>
+    <tr><th>Judul Buku</th><td th:text="${bukti.judulBuku}">Judul</td></tr>
+    <tr><th>Tanggal Peminjaman</th><td th:text="${bukti.tanggalPinjam}">2026-11-03</td></tr>
+    <tr><th>Status</th><td th:text="${bukti.status}">DIPINJAM</td></tr>
+</table>
+
+<p>
+    <a th:href="@{/pinjam}">Kembali ke Halaman Peminjaman</a><br>
+    <a th:href="@{/buku}">Daftar Buku</a><br>
+    <a th:href="@{/anggota}">Daftar Anggota</a>
+</p>
+</body>
+</html>

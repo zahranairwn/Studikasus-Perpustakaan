@@ -1,0 +1,64 @@
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Daftar Anggota</title>
+</head>
+
+<p>
+    <a th:href="@{/buku}">Daftar Buku</a><br>
+    <a th:href="@{/pinjam}">Pinjam Buku</a>
+</p>
+
+<body>
+<h1>Daftar Anggota</h1>
+
+<p th:if="${#lists.isEmpty(daftarAnggota)}">Belum ada anggota.</p>
+
+<table border="1" th:unless="${#lists.isEmpty(daftarAnggota)}">
+    <tr><th>ID</th><th>Nama</th><th>Batas Pinjam</th></tr>
+    <tr th:each="a : ${daftarAnggota}">
+        <td th:text="${a.idAnggota}">A001</td>
+        <td th:text="${a.nama}">Nama</td>
+        <td th:text="${a.batasPinjam}">0</td>
+    </tr>
+</table>
+
+<a th:href="@{/buku}">← Ke Daftar Buku</a>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Daftar Anggota</title></head>
+<body>
+<h1>Daftar Anggota</h1>
+
+<div th:if="${sukses}" style="color:#1b5e20"><p th:text="${sukses}">Berhasil</p></div>
+<div th:if="${pesan}" style="color:#b00020"><p th:text="${pesan}">Gagal</p></div>
+
+<h2>Tambah Anggota</h2>
+<form th:action="@{/anggota}" method="post">
+    <p>ID Anggota: <input type="text" name="idAnggota" maxlength="10" required></p>
+    <p>Nama: <input type="text" name="nama" maxlength="100" required></p>
+    <p>Batas Pinjam: <input type="number" name="batasPinjam" min="1" required></p>
+    <button type="submit">Tambah Anggota</button>
+</form>
+<hr>
+
+<h2>Daftar Anggota</h2>
+<table border="1">
+    <tr><th>ID</th><th>Nama</th><th>Batas Pinjam</th></tr>
+    <tr th:each="a : ${daftarAnggota}">
+        <td th:text="${a.idAnggota}">A001</td>
+        <td th:text="${a.nama}">Nama</td>
+        <td th:text="${a.batasPinjam}">2</td>
+    </tr>
+</table>
+
+<p>
+    <a th:href="@{/buku}">&larr; Ke Daftar Buku</a><br>
+    <a th:href="@{/pinjam}">Pinjam Buku</a>
+</p>
+</body>
+</html>
